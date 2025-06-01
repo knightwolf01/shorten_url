@@ -16,7 +16,7 @@ dotenv.config("./.env")
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    origin: process.env.CORS_URL, 
     credentials: true 
 }));
 
@@ -33,7 +33,7 @@ app.get("/:id",redirectFromShortUrl)
 
 app.use(errorHandler)
 
-app.listen(3000,()=>{
+app.listen(process.env.APP_URL||3000,()=>{
     connectDB()
     console.log("Server is running on http://localhost:3000");
 })
